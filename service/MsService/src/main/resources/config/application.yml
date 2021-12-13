@@ -1,0 +1,27 @@
+server:
+  port: 8445
+
+
+
+spring:
+  application:
+    name: MsService
+
+
+  #    nacos
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #nacos服务地址
+
+  jackson: #返回json的全局时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapperLocations: classpath:**/xml/*.xml

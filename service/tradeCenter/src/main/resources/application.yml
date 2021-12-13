@@ -1,0 +1,31 @@
+server:
+  port: 8443
+
+
+
+spring:
+  application:
+    name: tradeCenter
+#    mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/microservice?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+    username: root
+    password: 931986
+#    nacos
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #nacos服务地址
+
+  jackson: #返回json的全局时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+feign:
+  hystrix:
+    enabled: true
+#mybatis默认配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapperLocations: classpath:**/xml/*.xml

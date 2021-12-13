@@ -1,0 +1,27 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: api_gate
+  cloud:
+    nacos:
+      discovery:
+
+        enabled: true
+        server-addr: 127.0.0.1:8848 #nacos服务地址
+    gateway:
+      routes:
+        - id: serviceUcenter
+          uri: lb://serviceUcenter
+          predicates:
+            - Path=/*/Ucenter/**,
+        - id: serviceCommodity
+          uri: lb://serviceCommodity
+          predicates:
+            - Path=/*/commodity/**,
+        - id: tradeCenter
+          uri: lb://tradeCenter
+          predicates:
+            - Path=/*/trade/**,
+

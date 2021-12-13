@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>Common</module>
+        <module>service</module>
+        <module>nacosCenter</module>
+        <module>api_gate</module>
+    </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.2.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <groupId>com.SpringCloud</groupId>
+    <artifactId>CloudPractise</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>CloudPractise</name>
+    <description>Boot Cloud Pratise</description>
+
+    <properties>
+        <mybatis-plus.version>3.3.1.tmp</mybatis-plus.version>
+        <velocity.version>2.2</velocity.version>
+        <swagger.version>2.7.0</swagger.version>
+        <aliyun.oss.version>3.1.0</aliyun.oss.version>
+        <jodatime.version>2.10.5</jodatime.version>
+        <commons-fileupload.version>1.3.3</commons-fileupload.version>
+        <commons-io.version>2.6</commons-io.version>
+        <commons-lang.version>3.9</commons-lang.version>
+        <httpclient.version>4.5.1</httpclient.version>
+        <jwt.version>0.7.0</jwt.version>
+        <aliyun-java-sdk-core.version>4.5.1</aliyun-java-sdk-core.version>
+        <aliyun-java-sdk-vod.version>2.15.10</aliyun-java-sdk-vod.version>
+        <aliyun-sdk-vod-upload.version>1.4.13</aliyun-sdk-vod-upload.version>
+        <tencentcloudapi.version>3.1.209</tencentcloudapi.version>
+        <qcloud.vod_api.version>2.1.4</qcloud.vod_api.version>
+        <fastjson.version>1.2.28</fastjson.version>
+        <gson.version>2.8.2</gson.version>
+        <json.version>20170516</json.version>
+        <commons-dbutils.version>1.7</commons-dbutils.version>
+        <canal.client.version>1.1.0</canal.client.version>
+        <docker.image.prefix>zx</docker.image.prefix>
+        <alibaba.easyexcel.version>2.1.1</alibaba.easyexcel.version>
+        <apache.xmlbeans.version>3.1.0</apache.xmlbeans.version>
+
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--Spring Cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 添加 Mysql 依赖 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.21</version>
+            </dependency>
+            <!-- 添加 Spring Data JPA 依赖 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+            </dependency>
+
+            <!--mybatis-plus 持久层-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+            <!--swagger-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!--swagger ui-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!--aliyunOSS-->
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun.oss.version}</version>
+            </dependency>
+            <!--日期时间工具-->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${jodatime.version}</version>
+            </dependency>
+            <!--文件上传-->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
+            </dependency>
+            <!--commons-io-->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <!--commons-lang3-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
+            <!--httpclient-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <!-- JWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <!--aliyun-->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun-java-sdk-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-vod</artifactId>
+                <version>${aliyun-java-sdk-vod.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-sdk-vod-upload</artifactId>
+                <version>${aliyun-sdk-vod-upload.version}</version>
+            </dependency>
+            <!--腾讯云sdk开发工具-->
+            <dependency>
+                <groupId>com.tencentcloudapi</groupId>
+                <artifactId>tencentcloud-sdk-java</artifactId>
+                <version>${tencentcloudapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.qcloud</groupId>
+                <artifactId>vod_api</artifactId>
+                <version>${qcloud.vod_api.version}</version>
+            </dependency>
+            <!--json-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>${json.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${alibaba.easyexcel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlbeans</groupId>
+                <artifactId>xmlbeans</artifactId>
+                <version>${apache.xmlbeans.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+<!--    <build>-->
+<!--        <plugins>-->
+
+
+<!--        <plugin>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-compiler-plugin</artifactId>-->
+<!--&lt;!&ndash;            <version>3.8.1</version>&ndash;&gt;-->
+<!--            <configuration>-->
+<!--                <source>1.8</source>-->
+<!--                <target>1.8</target>-->
+<!--            </configuration>-->
+<!--            <executions>-->
+<!--                <execution>-->
+<!--                    <id>default-compile</id>-->
+<!--                    <configuration>-->
+<!--                        <compilerArgument>-proc:none</compilerArgument>-->
+<!--                        <includes>-->
+<!--                            &lt;!&ndash; 自定义的注解处理器全限定名&ndash;&gt;-->
+<!--                            <include>per.annotation.MyProcessor</include>-->
+<!--                        </includes>-->
+<!--                    </configuration>-->
+<!--                </execution>-->
+<!--                <execution>-->
+<!--                    <id>compile-project</id>-->
+<!--                    <phase>compile</phase>-->
+<!--                    <goals>-->
+<!--                        <goal>compile</goal>-->
+<!--                    </goals>-->
+<!--                </execution>-->
+<!--            </executions>-->
+<!--        </plugin>-->
+<!--        </plugins>-->
+
+<!--    </build>-->
+
+</project>
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<project xmlns="http://maven.apache.org/POM/4.0.0"-->
+<!--         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">-->
+<!--    <modelVersion>4.0.0</modelVersion>-->
+
+<!--    <groupId>com.SpringCloud</groupId>-->
+<!--    <artifactId>CloudPractise</artifactId>-->
+<!--    <packaging>pom</packaging>-->
+<!--    <version>1.0-SNAPSHOT</version>-->
+
+<!--    <name>CloudPractise</name>-->
+<!--    <description>lakeCollege for Spring Boot</description>-->
+<!--    <modules>-->
+
+<!--        <module>Common</module>-->
+<!--        <module>service</module>-->
+<!--        <module>nacosCenter</module>-->
+
+
+<!--    </modules>-->
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>2.2.2.RELEASE</version>-->
+<!--        <relativePath/>-->
+<!--    </parent>-->
+
+<!--    <properties>-->
+<!--        <maven.compiler.source>11</maven.compiler.source>-->
+<!--        <maven.compiler.target>11</maven.compiler.target>-->
+
+<!--        <mybatis-plus.version>3.3.1.tmp</mybatis-plus.version>-->
+<!--        <velocity.version>2.2</velocity.version>-->
+<!--        <swagger.version>2.7.0</swagger.version>-->
+<!--        <aliyun.oss.version>3.1.0</aliyun.oss.version>-->
+<!--        <jodatime.version>2.10.5</jodatime.version>-->
+<!--        <commons-fileupload.version>1.3.3</commons-fileupload.version>-->
+<!--        <commons-io.version>2.6</commons-io.version>-->
+<!--        <commons-lang.version>3.9</commons-lang.version>-->
+<!--        <httpclient.version>4.5.1</httpclient.version>-->
+<!--        <jwt.version>0.7.0</jwt.version>-->
+<!--        <aliyun-java-sdk-core.version>4.5.1</aliyun-java-sdk-core.version>-->
+<!--        <aliyun-java-sdk-vod.version>2.15.10</aliyun-java-sdk-vod.version>-->
+<!--        <aliyun-sdk-vod-upload.version>1.4.13</aliyun-sdk-vod-upload.version>-->
+<!--        <tencentcloudapi.version>3.1.209</tencentcloudapi.version>-->
+<!--        <qcloud.vod_api.version>2.1.4</qcloud.vod_api.version>-->
+<!--        <fastjson.version>1.2.28</fastjson.version>-->
+<!--        <gson.version>2.8.2</gson.version>-->
+<!--        <json.version>20170516</json.version>-->
+<!--        <commons-dbutils.version>1.7</commons-dbutils.version>-->
+<!--        <canal.client.version>1.1.0</canal.client.version>-->
+<!--        <docker.image.prefix>zx</docker.image.prefix>-->
+<!--        <alibaba.easyexcel.version>2.1.1</alibaba.easyexcel.version>-->
+<!--        <apache.xmlbeans.version>3.1.0</apache.xmlbeans.version>-->
+
+<!--        <java.version>1.8</java.version>-->
+<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+<!--        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
+<!--    </properties>-->
+
+<!--    <dependencyManagement>-->
+<!--        <dependencies>-->
+<!--            &lt;!&ndash;Spring Cloud&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-dependencies</artifactId>-->
+<!--                <version>Hoxton.SR10</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-test</artifactId>-->
+<!--                <version>2.3.6.RELEASE</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-alibaba-dependencies</artifactId>-->
+<!--                <version>2.1.0.RELEASE</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;mybatis-plus 持久层&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.mybatis.spring.boot</groupId>-->
+<!--                <artifactId>mybatis-spring-boot-starter</artifactId>-->
+<!--                <version>1.3.2</version>-->
+<!--            </dependency>-->
+
+
+<!--&lt;!&ndash;            <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;                <groupId>com.baomidou</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                <artifactId>mybatis-plus-boot-starter</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;                <version>${mybatis-plus.version}</version>&ndash;&gt;-->
+<!--&lt;!&ndash;            </dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;            <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;                <groupId>com.baomidou</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                <artifactId>mybatis-plus-generator</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;                <version>${mybatis-plus.version}</version>&ndash;&gt;-->
+<!--&lt;!&ndash;            </dependency>&ndash;&gt;-->
+<!--            &lt;!&ndash; velocity 模板引擎, Mybatis Plus 代码生成器需要 &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.velocity</groupId>-->
+<!--                <artifactId>velocity-engine-core</artifactId>-->
+<!--                <version>${velocity.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;swagger&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>io.springfox</groupId>-->
+<!--                <artifactId>springfox-swagger2</artifactId>-->
+<!--                <version>${swagger.version}</version>-->
+<!--            </dependency>-->
+<!--&lt;!&ndash;            mysql&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>mysql</groupId>-->
+<!--                <artifactId>mysql-connector-java</artifactId>-->
+<!--                <version>8.0.26</version>-->
+<!--                <scope>runtime</scope>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.microsoft.sqlserver</groupId>-->
+<!--                <artifactId>mssql-jdbc</artifactId>-->
+<!--                <scope>runtime</scope>-->
+<!--                <version>9.2.1</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;swagger ui&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>io.springfox</groupId>-->
+<!--                <artifactId>springfox-swagger-ui</artifactId>-->
+<!--                <version>${swagger.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;aliyunOSS&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.aliyun.oss</groupId>-->
+<!--                <artifactId>aliyun-sdk-oss</artifactId>-->
+<!--                <version>${aliyun.oss.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;日期时间工具&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>joda-time</groupId>-->
+<!--                <artifactId>joda-time</artifactId>-->
+<!--                <version>${jodatime.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;文件上传&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>commons-fileupload</groupId>-->
+<!--                <artifactId>commons-fileupload</artifactId>-->
+<!--                <version>${commons-fileupload.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;commons-io&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>commons-io</groupId>-->
+<!--                <artifactId>commons-io</artifactId>-->
+<!--                <version>${commons-io.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;commons-lang3&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.commons</groupId>-->
+<!--                <artifactId>commons-lang3</artifactId>-->
+<!--                <version>${commons-lang.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;httpclient&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.httpcomponents</groupId>-->
+<!--                <artifactId>httpclient</artifactId>-->
+<!--                <version>${httpclient.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash; JWT &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>io.jsonwebtoken</groupId>-->
+<!--                <artifactId>jjwt</artifactId>-->
+<!--                <version>${jwt.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;aliyun&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.aliyun</groupId>-->
+<!--                <artifactId>aliyun-java-sdk-core</artifactId>-->
+<!--                <version>${aliyun-java-sdk-core.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.aliyun</groupId>-->
+<!--                <artifactId>aliyun-java-sdk-vod</artifactId>-->
+<!--                <version>${aliyun-java-sdk-vod.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.aliyun</groupId>-->
+<!--                <artifactId>aliyun-sdk-vod-upload</artifactId>-->
+<!--                <version>${aliyun-sdk-vod-upload.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;腾讯云sdk开发工具&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.tencentcloudapi</groupId>-->
+<!--                <artifactId>tencentcloud-sdk-java</artifactId>-->
+<!--                <version>${tencentcloudapi.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.qcloud</groupId>-->
+<!--                <artifactId>vod_api</artifactId>-->
+<!--                <version>${qcloud.vod_api.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;json&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba</groupId>-->
+<!--                <artifactId>fastjson</artifactId>-->
+<!--                <version>${fastjson.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.json</groupId>-->
+<!--                <artifactId>json</artifactId>-->
+<!--                <version>${json.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.google.code.gson</groupId>-->
+<!--                <artifactId>gson</artifactId>-->
+<!--                <version>${gson.version}</version>-->
+<!--            </dependency>-->
+
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba</groupId>-->
+<!--                <artifactId>easyexcel</artifactId>-->
+<!--                <version>${alibaba.easyexcel.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.xmlbeans</groupId>-->
+<!--                <artifactId>xmlbeans</artifactId>-->
+<!--                <version>${apache.xmlbeans.version}</version>-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
+<!--    </dependencyManagement>-->
+<!--    <build>-->
+<!--        <plugins>-->
+<!--        <plugin>-->
+<!--            <groupId>org.flywaydb</groupId>-->
+<!--            <artifactId>flyway-maven-plugin</artifactId>-->
+<!--            <version>8.0.0-beta3</version>-->
+<!--            <configuration>-->
+<!--                <driver>com.mysql.cj.jdbc</driver>-->
+<!--                <url>jdbc:mysql://localhost:3306/microservice</url>-->
+<!--                <user>root</user>-->
+<!--                <password>931986</password>-->
+<!--                <locations>-->
+<!--                    &lt;!&ndash; 创表的sql的位置 &ndash;&gt;-->
+<!--                    <location>filesystem:src/main/resources/db/immigration</location>-->
+<!--                </locations>-->
+
+<!--            </configuration>-->
+<!--        </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+
+
+<!--</project>-->
