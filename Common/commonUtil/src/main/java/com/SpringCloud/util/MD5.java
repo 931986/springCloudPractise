@@ -9,7 +9,7 @@ public class MD5 {
 //   把传来的字符转bytes[]
 //    调用MessageDigest get "md5"  md.update(bytes)
 //    遍历 bytes   ,通过定义的chars[]经过位运算存起来，return string(chars)
- public static  String encrypt(String str) throws Exception {
+ public static  String encrypt(String str)  {
 
      try{
 
@@ -26,7 +26,7 @@ public class MD5 {
          return new String(chars);
      }catch(Exception e){
          e.printStackTrace();
-         throw  new Exception("md5加密出错"+e);
+         throw new RuntimeException("MD5加密出错！！+" + e);
      }
  }
 

@@ -1,6 +1,6 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
+use microservice;
 -- ----------------------------
 -- Table structure for trade_order
 -- ----------------------------
@@ -185,6 +185,8 @@ CREATE TABLE `User_Center`  (
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 INSERT INTO User_Center(id, name, phone, pass, email, des, wechat, avatar, level, age, sex, account, is_deleted, is_disabled)
 VALUES (1,'sun','18192642680','931986','syf57336928','sun的个人主页','18192642680','',4,21,0,0,false,false);
+INSERT INTO User_Center(id, name, phone, pass, email, des, wechat, avatar, level, age, sex, account, is_deleted, is_disabled)
+VALUES (2,'admin','15936931986','root','none','root的个人主页','none','',4,21,0,0,false,false);
 
 
 

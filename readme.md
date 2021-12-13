@@ -10,7 +10,7 @@ fingBykey(name)
 读写分离
 
 mysql  更新sql
-mysql -uroot -p931986 -Dmicroservice <e:\C++\Project\spring_cloud_blog-main\sql\V1__init.sql
+mysql -uroot -p931986 -Dmicroservice <e:\C++\Project\spring_cloud_practise-master\sql\V1__init.sql
 
 每次git push都要 进行 git config --global --unset http.proxy和 git config --global --unset https.proxy
 这墙越来越厚了
@@ -46,6 +46,13 @@ person测试数据
            "sort": 1,
            "deleted": false
             }ies（a,b）左边的变量a给右边的b赋值
+登录测试数据
+path:http://localhost:9000/api/Ucenter/login
+{
+"userInfo":"18192642680",
+"pass":"931986"
+
+}
 
 代码里面 gmt_create和gmt_update两种自动更新的代码实现
 一种是直接在数据库上加   DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'

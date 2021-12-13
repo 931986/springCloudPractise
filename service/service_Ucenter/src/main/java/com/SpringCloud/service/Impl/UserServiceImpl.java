@@ -1,5 +1,7 @@
 package com.SpringCloud.service.Impl;
 
+import com.SpringCloud.base.BaseException;
+import com.SpringCloud.base.ResultCodeEnum;
 import com.SpringCloud.entity.RegisterInfo;
 import com.SpringCloud.entity.Response_info;
 import com.SpringCloud.entity.UserInfo;
@@ -8,11 +10,12 @@ import com.SpringCloud.mapper.UserMapper;
 import com.SpringCloud.service.UserService;
 import com.SpringCloud.util.JwtInfo;
 import com.SpringCloud.util.JwtUtils;
+import com.SpringCloud.util.MD5;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.bouncycastle.jcajce.provider.asymmetric.rsa.DigestSignatureSpi;
-import org.bouncycastle.jcajce.provider.digest.MD5;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +48,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserInfo>  implemen
 
 }
 
-   public String login(loginInfo user) {
+   public String login(loginInfo user)  {
 
    String userAccount=user.getUserInfo();
    System.out.println(userAccount);
@@ -60,6 +63,13 @@ UserInfo userInfo=baseMapper.selectOne(queryWrapper);
 if(userInfo==null){
    return null;
 }
+       if (!MD5.encrypt(pass).equals(user.getPass())) {
+           return null;
+
+//           throw new BaseException(ResultCodeEnum.LOGIN_ERROR);
+       }
+
+
       Response_info response_info=new Response_info();
   response_info.setAvatar(userInfo.getAvatar());
       response_info.setName(userInfo.getName());

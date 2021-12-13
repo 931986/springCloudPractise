@@ -17,6 +17,7 @@
     </properties>
     <!-- 网关 -->
     <dependencies>
+
         <dependency>
             <groupId>com.SpringCloud</groupId>
             <artifactId>commonUtil</artifactId>
