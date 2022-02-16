@@ -18,6 +18,7 @@
         <module>serviceCommodity</module>
         <module>MsService</module>
         <module>service_Ucenter</module>
+        <module>service_vod</module>
 
 
     </modules>

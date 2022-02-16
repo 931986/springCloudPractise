@@ -9,8 +9,13 @@ startup.cmd -m standalone
 fingBykey(name)
 读写分离
 
-mysql  更新sql
+
+mysql 更新sql 
 mysql -uroot -p931986 -Dmicroservice <e:\C++\Project\spring_cloud_practise-master\sql\V1__init.sql
+mysql -uroot -p931986 -Dmicroservice_slave1 <e:\C++\Project\spring_cloud_practise-master\sql\V2__AddConfiguration.sql
+
+
+
 
 每次git push都要 进行 git config --global --unset http.proxy和 git config --global --unset https.proxy
 这墙越来越厚了

@@ -3,8 +3,10 @@ package com.SpringCloud.Controller;
 import com.SpringCloud.base.R;
 import com.SpringCloud.entity.form.CommodityBaseForm;
 import com.SpringCloud.service.CommodityService;
+import com.SpringCloud.service.SeckilGrabService;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +39,28 @@ public class CommodityController {
                 }
                 return R.ok().data("CommodityBaseForm",commodityBaseForm).message("200");
         }
+
+//        这一步是进行压测和加锁针对高并发情况下的
+   @Resource
+    private SeckilGrabService grabService;
+    @Qualifier("seckilJVMLockService")
+    @GetMapping("/grab/do/{goodsId}")
+    public String grabMysql(@PathVariable("goodsId") int goodsId,int userId){
+             System.out.println("goodId:"+goodsId);
+             System.out.println(grabService.gradOrder(goodsId,userId));
+             return "";
+
+    }
+
+    @GetMapping("/do-redis/{goodsId}")
+    public String grabRedis(@PathVariable("goodsId") int goodsId,int userId){
+        System.out.println("goodId"+goodsId);
+        grabService.gradOrder(goodsId,userId);
+        return "";
+
+    }
+
+
 
 
 

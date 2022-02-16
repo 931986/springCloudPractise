@@ -47,34 +47,42 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserInfo>  implemen
    baseMapper.insert(userInfo);
 
 }
-
+    @Override
    public String login(loginInfo user)  {
 
    String userAccount=user.getUserInfo();
-   System.out.println(userAccount);
+   System.out.println("userAccount"+userAccount);
    String pass=user.getPass();
       //   判定它是电话号还是邮箱还是用户名
 QueryWrapper<UserInfo> queryWrapper=new QueryWrapper<>();
 queryWrapper.lambda().eq(UserInfo::getAccount,userAccount).or().eq(UserInfo::getPhone,userAccount)
         .or().eq(UserInfo::getEmail,userAccount);
-UserInfo userInfo=baseMapper.selectOne(queryWrapper);
+UserInfo user_info=baseMapper.selectOne(queryWrapper);
+       System.out.println("user_info:"+user_info);
+
+// //使用邮箱或者手机号登录
+//        QueryWrapper<Member> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.lambda().eq(Member::getMobile, userInfo).or().eq(Member::getEmail, userInfo);
+//        System.out.println(userInfo);
+//        Member member = baseMapper.selectOne(queryWrapper);
+
+if(user_info==null){
+    throw new BaseException(ResultCodeEnum.LOGIN_ERROR);
 
 
-if(userInfo==null){
-   return null;
 }
-       if (!MD5.encrypt(pass).equals(user.getPass())) {
-           return null;
+       if (!MD5.encrypt(pass).equals(user_info.getPass())) {
+//           return null;
 
-//           throw new BaseException(ResultCodeEnum.LOGIN_ERROR);
+           throw new BaseException(ResultCodeEnum.LOGIN_ERROR);
        }
 
 
       Response_info response_info=new Response_info();
-  response_info.setAvatar(userInfo.getAvatar());
-      response_info.setName(userInfo.getName());
-      response_info.setDes(userInfo.getDes());
-      response_info.setId(userInfo.getId());
+  response_info.setAvatar(user_info.getAvatar());
+      response_info.setName(user_info.getName());
+      response_info.setDes(user_info.getDes());
+      response_info.setId(user_info.getId());
       JwtInfo jwtInfo=new JwtInfo();
       BeanUtils.copyProperties(response_info,jwtInfo);
       String jwtToken = JwtUtils.getJwtToken(jwtInfo, 1800);

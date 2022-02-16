@@ -62,7 +62,9 @@ CREATE TABLE `commodity_center`  (
 
 #     `id` int CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '商品ID',
                                      `id`int auto_increment,
-                                   `seller_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '商品id',
+                                     `commodity_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '商品id',
+
+                                     `seller_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '商品id',
                                    `subject_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '商品名称',
                                    `subject_Parent_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '商品封面',
 
@@ -86,8 +88,10 @@ CREATE TABLE `commodity_center`  (
 #                                 INDEX  `idx_course_id`(`commodityId`) USING BTREE,
 #                                 INDEX  `idx_member_id`(`buyerId`) USING BTREE
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
-INSERT INTO commodity_center(id, seller_id, subject_id, subject_Parent_id, commodity_title, commodity_price, commodity_time, commodity_cover, seller_amount, view_count, commodity_status, version)
-VALUES (1,'1','phone','electic','mi 3','1999','2021','',1999.0,'243','1','12');
+INSERT INTO commodity_center(id, commodity_id,seller_id, subject_id, subject_Parent_id, commodity_title, commodity_price, commodity_time, commodity_cover, seller_amount, view_count, commodity_status, version)
+VALUES (1,'1450','212','phone','electic','mi 3','1999','2021','',1999.0,'243','1','12');
+INSERT INTO commodity_center(id,commodity_id, seller_id, subject_id, subject_Parent_id, commodity_title, commodity_price, commodity_time, commodity_cover, seller_amount, view_count, commodity_status, version)
+VALUES (2,'1451','213','mac','electic','mac pro 3','2999','2021','',2999.0,'643','1','12');
 # {
 #
 #     "commodity_title":"测试",
@@ -193,4 +197,20 @@ VALUES (2,'admin','15936931986','root','none','root的个人主页','none','',4,
 
 
 
+DROP TABLE IF EXISTS `commodity_collect`;
+CREATE TABLE `commodity_collect`  (
+#                                      `id` char(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '收藏ID',
+                                      id int auto_increment,
+                                     `commodity_id` char(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '商品ID',
+                                     `member_id` char(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户id',
+                                     `gmt_create` datetime(0) NOT NULL  DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                                     `gmt_modified` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT  '更新时间',
+                                     PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT=1  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '课程收藏' ROW_FORMAT = Compact;
+INSERT INTO commodity_collect (id, commodity_id,member_id) VALUES
+    (1,'1451',1);
+INSERT INTO commodity_collect (id, commodity_id,member_id) VALUES
+    (2,'1450',2);
+# INSERT INTO commodity_center(id, seller_id, subject_id, subject_Parent_id, commodity_title, commodity_price, commodity_time, commodity_cover, seller_amount, view_count, commodity_status, version)
+# VALUES (2,'1451','mac','electic','mac pro 3','2999','2021','',2999.0,'643','1','12');
 

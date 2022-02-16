@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> implements PersonService {
 
@@ -18,6 +20,16 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> impleme
         baseMapper.insert(person);
 
         return "保存成功";
+    }
+
+    @Override
+    public List<Person> selectHotPerson() {
+        return null;
+    }
+
+    @Override
+    public List<Person> selectHotSubject() {
+        return null;
     }
 
 }
