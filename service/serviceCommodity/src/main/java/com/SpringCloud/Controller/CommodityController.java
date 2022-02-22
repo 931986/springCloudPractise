@@ -2,16 +2,23 @@ package com.SpringCloud.Controller;
 
 import com.SpringCloud.base.R;
 import com.SpringCloud.entity.form.CommodityBaseForm;
+import com.SpringCloud.entity.form.Goods;
+import com.SpringCloud.redis.redis.GoodsKey;
+import com.SpringCloud.redis.redis.RedisService;
 import com.SpringCloud.service.CommodityService;
 import com.SpringCloud.service.SeckilGrabService;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.websocket.server.PathParam;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 @RestController
         @Slf4j
@@ -19,9 +26,13 @@ import javax.websocket.server.PathParam;
 
         @RequestMapping("/api/commodity")
 public class CommodityController {
-        @Resource
-         private CommodityService commodityService;
-         @PostMapping("saveCommodity")
+
+    @Resource
+    private CommodityService commodityService;
+
+
+
+    @PostMapping("saveCommodity")
        public R SaveCommodityBaseInfo(@ApiParam(value="商品基本信息",required = true)
                @RequestBody CommodityBaseForm commodityBaseForm){
              System.out.println(commodityBaseForm);
@@ -39,26 +50,33 @@ public class CommodityController {
                 }
                 return R.ok().data("CommodityBaseForm",commodityBaseForm).message("200");
         }
-
-//        这一步是进行压测和加锁针对高并发情况下的
-   @Resource
+    //        这一步是进行压测和加锁针对高并发情况下的
+    @Resource
     private SeckilGrabService grabService;
-    @Qualifier("seckilJVMLockService")
-    @GetMapping("/grab/do/{goodsId}")
+//    @PostMapping("/list")
+//    public String findGoodsList(Model model) {
+//        List<Goods> list =grabService.findAll();
+//        model.addAttribute("list", list);
+//        return "page/seckill";
+//    }
+
+
+
+//    @Qualifier("seckilJVMLockService")
+
+@PostMapping("/grab/do/{goodsId}")
+
     public String grabMysql(@PathVariable("goodsId") int goodsId,int userId){
-             System.out.println("goodId:"+goodsId);
+//          grabService.findAll();
+    Random r=new Random();
+    userId=userId+r.nextInt(30);
+        System.out.println("goodId:"+goodsId);
              System.out.println(grabService.gradOrder(goodsId,userId));
              return "";
 
     }
 
-    @GetMapping("/do-redis/{goodsId}")
-    public String grabRedis(@PathVariable("goodsId") int goodsId,int userId){
-        System.out.println("goodId"+goodsId);
-        grabService.gradOrder(goodsId,userId);
-        return "";
 
-    }
 
 
 

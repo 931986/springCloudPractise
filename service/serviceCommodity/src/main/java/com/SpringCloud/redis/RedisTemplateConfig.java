@@ -10,6 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.nio.charset.Charset;
 
 /**
  * @auther TyCoding
@@ -19,9 +22,27 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 public class RedisTemplateConfig {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//    @Bean
+//    RedisTemplate<String, Object> template(RedisConnectionFactory connectionFactory) {
+//        RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+//        template.setConnectionFactory(connectionFactory);
+//        // 定义value的序列化方式
+//        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
+//        ObjectMapper om = new ObjectMapper();
+//        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+//        jackson2JsonRedisSerializer.setObjectMapper(om);
+//        template.setValueSerializer(jackson2JsonRedisSerializer);
+//        template.setKeySerializer(new StringRedisSerializer(Charset.forName("UTF-8")));
+//        //save hash use StringRedisSerializer as serial method
+//        template.setHashKeySerializer(new StringRedisSerializer(Charset.forName("UTF-8")));
+//        template.setHashValueSerializer(new StringRedisSerializer(Charset.forName("UTF-8")));
+//        template.afterPropertiesSet();
+//        return template;
+//    }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
+    public RedisTemplate<String, Object> jedisTemplate(RedisConnectionFactory redisConnectionFactory){
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);

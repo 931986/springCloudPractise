@@ -14,8 +14,8 @@ import redis.clients.jedis.JedisPoolConfig;
  * @date 2018/10/8
  */
 @Configuration
-public class RedisConfig {
-    private Logger logger = LoggerFactory.getLogger(RedisConfig.class);
+public class JedisConfig {
+    private Logger logger = LoggerFactory.getLogger(JedisConfig.class);
 
     @Value("${spring.redis.host}")
     private String host;

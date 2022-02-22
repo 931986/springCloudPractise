@@ -2,7 +2,7 @@
 打开 redis  nacos
   redis-server
  打开nacos
- e:    cd E:\C++\nacos-server-2.0.3\nacos\bin
+ e:    cd E:\C++\dependences\nacos\bin
 startup.cmd -m standalone
 在   http://192.168.43.251:8848/nacos/index.html看nacos中心
 
@@ -13,6 +13,7 @@ fingBykey(name)
 mysql 更新sql 
 mysql -uroot -p931986 -Dmicroservice <e:\C++\Project\spring_cloud_practise-master\sql\V1__init.sql
 mysql -uroot -p931986 -Dmicroservice_slave1 <e:\C++\Project\spring_cloud_practise-master\sql\V2__AddConfiguration.sql
+
 
 
 
@@ -69,6 +70,27 @@ gateway不支持下划线的命名方式，
 功能需求：
 1-高并发读取与写入（涉及到集群，负载，读写分离，分库分表等操作）
 2-性能优化（玩转降级、限流、拒绝服务这三件法宝）
+
+
+
+
+7. 本地标记 + redis预处理 + RabbitMQ异步下单 + 客户端轮询
+   描述：通过三级缓冲保护，1、本地标记 2、redis预处理 3、RabbitMQ异步下单，最后才会访问数据库，这样做是为了最大力度减少对数据库的访问。
+
+实现：
+
+在秒杀阶段使用本地标记对用户秒杀过的商品做标记，若被标记过直接返回重复秒杀，未被标记才查询redis，通过本地标记来减少对redis的访问
+抢购开始前，将商品和库存数据同步到redis中，所有的抢购操作都在redis中进行处理，通过Redis预减少库存减少数据库访问
+为了保护系统不受高流量的冲击而导致系统崩溃的问题，使用RabbitMQ用异步队列处理下单，实际做了一层缓冲保护，做了一个窗口模型，窗口模型会实时的刷新用户秒杀的状态。
+client端用js轮询一个接口，用来获取处理状态
+8. 解决超卖
+   描述：比如某商品的库存为1，此时用户1和用户2并发购买该商品，用户1提交订单后该商品的库存被修改为0，而此时用户2并不知道的情况下提交订单，该商品的库存再次被修改为-1，这就是超卖现象
+
+实现：
+
+对库存更新时，先对库存判断，只有当库存大于0才能更新库存
+对用户id和商品id建立一个唯一索引，通过这种约束避免同一用户发同时两个请求秒杀到两件相同商品
+实现乐观锁，给商品信息表增加一个version字段，为每一条数据加上版本。每次更新的时候version+1，并且更新时候带上版本号，当提交前版本号等于更新前版本号，说明此时没有被其他线程影响到，正常更新，如果冲突了则不会进行提交更新。当库存是足够的情况下发生乐观锁冲突就进行一定次数的重试。
 
 
 
