@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Common/commonUtil/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Common/serviceBase/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/api_gate/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nacosCenter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nacosCenter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/MsService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/MsService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/dxfl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/dxfl/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/serviceCommodity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/serviceCommodity/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/service_Ucenter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/service_Ucenter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/service_vod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/tradeCenter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/tradeCenter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

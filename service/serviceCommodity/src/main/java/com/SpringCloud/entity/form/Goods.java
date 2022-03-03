@@ -18,18 +18,18 @@ import java.util.Date;
 @Accessors(chain = true)
 public class Goods implements Serializable {
     @ApiModelProperty(value = "id")
-    private String id;
+    private long id;
     @ApiModelProperty(value = "goods_id")
-    private int goods_id;
+    private long goodsId;
 
     @ApiModelProperty(value = "数量")
     private  int num;
     @ApiModelProperty(value = "价格")
-    private  double seckill_price;
+    private  double seckillPrice;
     @ApiModelProperty(value = "开始时间")
-    private Date start_date;
+    private Date startDate;
     @ApiModelProperty(value = "结束时间")
-    private  Date end_date;
+    private  Date endDate;
     @ApiModelProperty(value = "版本")
     private  int version;
 
