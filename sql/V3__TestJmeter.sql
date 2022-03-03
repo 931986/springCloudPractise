@@ -39,16 +39,16 @@ CREATE TABLE `Goods_center` (
                                 `goods_img` varchar(64) DEFAULT NULL COMMENT '商品图片',
                                 `goods_detail` longtext COMMENT '商品详情',
                                 `goods_price` decimal(10,2) DEFAULT NULL,
-                                `goods_stock` int(11) DEFAULT '0' COMMENT '商品库存，-1表示没有限制',
+                                `num` int(11) DEFAULT '0' COMMENT '商品库存，-1表示没有限制',
                                 PRIMARY KEY (`id`) USING BTREE
 
 
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 # INSERT INTO Goods_center(id, num) VALUES (1,10);
 INSERT INTO `Goods_center`
-VALUES ('1', 'iphoneX', 'Apple', '/img/iphonex.png', 'Apple', '7788.00', '100');
+VALUES ('1', 'iphoneX', 'Apple', '/img/iphonex.png', 'Apple', '7788.00', '2');
 INSERT INTO `Goods_center`
-VALUES ('2', 'Mate 10', 'Huawei', '/img/meta10.png', 'Huawei', '4199.00', '50');
+VALUES ('2', 'Mate 10', 'Huawei', '/img/meta10.png', 'Huawei', '4199.00', '5');
 
 
 
@@ -61,22 +61,22 @@ VALUES ('2', 'Mate 10', 'Huawei', '/img/meta10.png', 'Huawei', '4199.00', '50');
 
 
 
-DROP TABLE IF EXISTS `Order_center`;
-CREATE TABLE `Order_center`  (
 
-#     @ApiModelProperty(value = "id")
-#     private String id;
-#     @ApiModelProperty(value = "des")
-#     private String description;
-#     @ApiModelProperty(value = "status")
-#     private int status;
-#     @ApiModelProperty(value = "userId")
-#     private int UserId;
-    #     `id` int CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '商品ID',
-                                 `id`int auto_increment,
-                                 `description` varchar(100) COMMENT '描述',
-                                 `status` int COMMENT '状态',
-                                 `user_id` int COMMENT '用户Id',
+DROP TABLE IF EXISTS `OrderInfo_center`;
+CREATE TABLE `OrderInfo_center` (
+                                 `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                                 `user_id` bigint(20) DEFAULT NULL,
+                                 `goods_id` bigint(20) DEFAULT NULL,
+                                 `delivery_addr_id` bigint(20) DEFAULT NULL,
+                                 `goods_name` varchar(30) DEFAULT NULL,
+                                 `description` varchar(100) DEFAULT NULL,
+                                 `goods_count` int(11) DEFAULT NULL,
+                                 `goods_price` decimal(10,2) DEFAULT NULL,
+                                 `order_channel` tinyint(4) DEFAULT NULL COMMENT '订单渠道，1在线，2android，3ios',
+                                 `status` tinyint(4) DEFAULT NULL COMMENT '订单状态，0新建未支付，1已支付，2已发货，3已收货，4已退款，5已完成',
+
+
+
 
                                  `gmt_create` datetime(0) NOT NULL  DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
                                  `gmt_modified` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT  '更新时间',

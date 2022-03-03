@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="serviceBase" />
+        <module name="api_gate" />
+        <module name="service_Ucenter" />
+        <module name="dxfl" />
+        <module name="service_vod" />
+        <module name="MsService" />
+        <module name="commonUtil" />
+        <module name="serviceCommodity" />
+        <module name="nacosCenter" />
+        <module name="tradeCenter" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MsService" options="-parameters" />
+      <module name="api_gate" options="-parameters" />
+      <module name="commonUtil" options="-parameters" />
+      <module name="dxfl" options="-parameters" />
+      <module name="nacosCenter" options="-parameters" />
+      <module name="serviceBase" options="-parameters" />
+      <module name="serviceCommodity" options="-parameters" />
+      <module name="service_Ucenter" options="-parameters" />
+      <module name="service_vod" options="-parameters" />
+      <module name="tradeCenter" options="-parameters" />
+    </option>
+  </component>
+</project>

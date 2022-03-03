@@ -51,8 +51,8 @@ public class CommodityController {
                 return R.ok().data("CommodityBaseForm",commodityBaseForm).message("200");
         }
     //        这一步是进行压测和加锁针对高并发情况下的
-    @Resource
-    private SeckilGrabService grabService;
+//    @Resource
+//    private SeckilGrabService grabService;
 //    @PostMapping("/list")
 //    public String findGoodsList(Model model) {
 //        List<Goods> list =grabService.findAll();
@@ -64,17 +64,17 @@ public class CommodityController {
 
 //    @Qualifier("seckilJVMLockService")
 
-@PostMapping("/grab/do/{goodsId}")
-
-    public String grabMysql(@PathVariable("goodsId") int goodsId,int userId){
-//          grabService.findAll();
-    Random r=new Random();
-    userId=userId+r.nextInt(30);
-        System.out.println("goodId:"+goodsId);
-             System.out.println(grabService.gradOrder(goodsId,userId));
-             return "";
-
-    }
+//@PostMapping("/grab/do/{goodsId}")
+//
+//    public String grabMysql(@PathVariable("goodsId") int goodsId,int userId){
+////          grabService.findAll();
+//    Random r=new Random();
+//    userId=userId+r.nextInt(30);
+//        System.out.println("goodId:"+goodsId);
+//             System.out.println(grabService.gradOrder(goodsId,userId));
+//             return "";
+//
+//    }
 
 
 

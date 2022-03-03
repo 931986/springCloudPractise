@@ -9,16 +9,27 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@TableName("Order_center")
+@TableName("OrderInfo_center")
 @ApiModel(value = "order列表",description = "Goods的Jmeter测试Order订单记录")
-public class Order {
+public class OrderInfo {
     @TableId(type = IdType.AUTO)
     @ApiModelProperty(value = "id")
     private String id;
     @ApiModelProperty(value = "des")
     private String description;
-    @ApiModelProperty(value = "status")
-    private int status;
     @ApiModelProperty(value = "userId")
-    private int userId;
+    private long userId;
+    @ApiModelProperty(value = "邮寄地址编号")
+    private String  deliveryAddrId;
+    @ApiModelProperty(value = "status")
+    private String goodsName;
+    @ApiModelProperty(value = "status")
+    private Integer goodsCount;
+    @ApiModelProperty(value = "status")
+    private Double goodsPrice;
+    @ApiModelProperty(value = "status")
+    private Integer orderChannel;
+    @ApiModelProperty(value = "status")
+    private Integer status;
+
 }

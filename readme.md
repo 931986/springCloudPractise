@@ -6,6 +6,9 @@
 startup.cmd -m standalone
 在   http://192.168.43.251:8848/nacos/index.html看nacos中心
 
+rabbitmq:
+cd E:\C++\dependences\RabbitMQ\RabbitMQ\rabbitmq_server-3.9.13\sbin
+
 fingBykey(name)
 读写分离
 
@@ -26,6 +29,15 @@ mysql -uroot -p931986 -Dmicroservice_slave1 <e:\C++\Project\spring_cloud_practis
 @Autowired 默认先按照type查找，后按照name查找，然后进行注入。@Resource与其相反。
 
 在线地址：https://github.com/931986/spring_cloud_practise/tree/master
+
+
+git上传 步骤：
+cd E:/C++/Project/spring_cloud_practise-master
+git  add *
+git commit -m "...v1"
+git push https://github.com/931986/springCloudPractise
+
+
 Commodity测试数据，
 seller_id unique，其余不是unique
 {
@@ -36,9 +48,6 @@ seller_id unique，其余不是unique
     "seller_amount":"1999",
     "commodityPrice":"1999"
 }
-
-
-
 
 person测试数据
     {
@@ -66,6 +75,12 @@ path:http://localhost:9000/api/Ucenter/login
 
 gateway不支持下划线的命名方式，
 
+mybatis：
+命名建议： 数据对象全用驼峰，数据库全用横杠
+# 开启驼峰命名转换，如：Table(create_time) -> Entity(createTime)
+配置加上这一句：
+    map-underscore-to-camel-case: true
+
 
 功能需求：
 1-高并发读取与写入（涉及到集群，负载，读写分离，分库分表等操作）
@@ -87,7 +102,7 @@ client端用js轮询一个接口，用来获取处理状态
    描述：比如某商品的库存为1，此时用户1和用户2并发购买该商品，用户1提交订单后该商品的库存被修改为0，而此时用户2并不知道的情况下提交订单，该商品的库存再次被修改为-1，这就是超卖现象
 
 实现：
-
+mysql级别的操作
 对库存更新时，先对库存判断，只有当库存大于0才能更新库存
 对用户id和商品id建立一个唯一索引，通过这种约束避免同一用户发同时两个请求秒杀到两件相同商品
 实现乐观锁，给商品信息表增加一个version字段，为每一条数据加上版本。每次更新的时候version+1，并且更新时候带上版本号，当提交前版本号等于更新前版本号，说明此时没有被其他线程影响到，正常更新，如果冲突了则不会进行提交更新。当库存是足够的情况下发生乐观锁冲突就进行一定次数的重试。

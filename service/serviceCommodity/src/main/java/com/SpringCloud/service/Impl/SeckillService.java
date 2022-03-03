@@ -1,7 +1,7 @@
 package com.SpringCloud.service.Impl;
 
-import com.SpringCloud.entity.form.Goods;
-import com.SpringCloud.entity.form.Order;
+import com.SpringCloud.entity.form.GoodsVo;
+import com.SpringCloud.entity.form.OrderInfo;
 import com.SpringCloud.entity.form.User;
 import com.SpringCloud.redis.redis.RedisService;
 import com.SpringCloud.redis.redis.SeckillKey;
@@ -20,7 +20,7 @@ public class SeckillService {
     @Autowired
     private  OrderService orderService;
     @Transactional
-    public Order seckill(User user, Goods goods){
+    public OrderInfo seckill(User user, GoodsVo goods){
         //减库存
         boolean success = goodsService.reduceStock(goods);
         System.out.println("执行数据库减少库存");
@@ -28,7 +28,7 @@ public class SeckillService {
             //下订单 写入秒杀订单
             return orderService.createOrder(user, goods);
         }else {
-            setGoodsOver(Integer.parseInt(goods.getId()));
+            setGoodsOver((int)goods.getGoodsId());
             return  null;
         }
     }

@@ -1,6 +1,7 @@
 package com.SpringCloud.rabbitmq;
 
 import com.SpringCloud.entity.form.Goods;
+import com.SpringCloud.entity.form.GoodsVo;
 import com.SpringCloud.entity.form.User;
 import com.SpringCloud.redis.redis.RedisService;
 import com.SpringCloud.service.Impl.OrderService;
@@ -46,14 +47,14 @@ public class MQReceiver {
        long goodsId = m.getGoodsId();
         System.out.println("receive"+ goodsId);
 
-        Goods goodsVo = goodsService.getGoodsByGoodsId(m.getGoodsId());
+        GoodsVo goodsVo = goodsService.getGoodsByGoodsId(m.getGoodsId());
 
-        System.out.println("goodsvo.Goodsid"+ goodsVo.getGoods_id());
-        int stock = goodsVo.getNum();
+        System.out.println("goodsvo.Goodsid"+ goodsVo.getGoodsId());
+         long stock = goodsVo.getNum();
         if(stock <= 0){
             return;
         }
-        goodsVo.setGoods_id(2);
+        goodsVo.setGoodsId(goodsId);
         System.out.println("goodsvo"+goodsVo);
 
         //判断重复秒杀
